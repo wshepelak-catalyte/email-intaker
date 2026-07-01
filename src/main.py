@@ -1,6 +1,6 @@
-from src.db import create_user, get_user_by_username, get_user_by_email, update_user_password, verify_unique_profile
-from src.user import User
-from src.validator import *
+from db import create_user, get_user_by_username, verify_unique_profile
+from user import User
+from validator import *
 
 def login():
     """

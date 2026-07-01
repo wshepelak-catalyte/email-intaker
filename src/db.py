@@ -1,5 +1,5 @@
 import sqlite3
-from src.user import User
+from user import User
 
 init_db_table = """
 CREATE TABLE IF NOT EXISTS users (
