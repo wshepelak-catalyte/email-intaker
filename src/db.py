@@ -1,4 +1,5 @@
 import sqlite3
+from src.user import User
 
 init_db_table = """
 CREATE TABLE IF NOT EXISTS users (
@@ -9,33 +10,38 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
 """
 
-def create_user(username, email, password):
+def create_user(user: User):
     """
-    Creates a new user in the database with the provided username, email, and password.
+    Creates a new user in the database.
 
     Parameters
     ----------
-    username : str
-        The username of the new user.
-    email : str
-        The email address of the new user.
-    password : str
-        The password of the new user.
+    user : User
+        An instance of the User class containing the user's information.
 
+    Returns
+    -------
+    bool
+        True if the user was created successfully, False otherwise.
+        
     Raises
     ------
     sqlite3.Error
         If there is an error executing the SQL command.
     """
+    success = False
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     try:
-        cursor.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password))
+        cursor.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+                       (user.username, user.email, user.password))
         conn.commit()
+        success = True
     except sqlite3.Error as e:
         print(f"Error creating user: {e}")
     finally:
         conn.close()
+        return success
 
 def get_user_by_username(username):
     """
