@@ -3,7 +3,6 @@ This module contains the User class, which represents a user in the system.
 The User class has attributes such as username, email, and password, and 
 methods for authentication and user management.
 """
-import re
 
 class User:
     """
