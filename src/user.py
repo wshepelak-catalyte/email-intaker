@@ -40,16 +40,3 @@ class User:
         self.username = username
         self.email = email
         self.password = password
-
-    def validate_email(self):
-        """
-        Validates the email address of the user.
-
-        Returns
-        -------
-        bool
-            True if the email address is valid, False otherwise.
-        """
-        
-        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-        return re.match(email_regex, self.email) is not None
