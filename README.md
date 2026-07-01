@@ -94,3 +94,7 @@ User
 
 This project is intended for educational and demonstration purposes.
 
+## Contributors
+<a href="https://github.com/adiaz-catalyte/Catalyte-War-Activity/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=adiaz-catalyte/Catalyte-War-Activity" />
+</a>
