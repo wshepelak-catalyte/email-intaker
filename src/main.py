@@ -3,9 +3,34 @@ from src.user import User
 from src.validator import *
 
 def login():
-    pass
+    """
+    Prompts the user for their username and password, and attempts to log them in by verifying the credentials against the database.
+
+    Returns
+    -------
+    User or None
+        A User object if the login is successful, or None if the login fails.
+    """
+    username = str(input("Enter username: "))
+    password = str(input("Enter password: "))
+
+    user_data = get_user_by_username(username)
+    if user_data is None:
+        print("User not found.")
+        return None
+
+    stored_password = user_data[3]  # Assuming the password is the fourth element in the tuple
+    if password == stored_password:
+        print("Login successful!")
+        return User(user_data[1], user_data[2], stored_password)  # Create a User object
+    else:
+        print("Incorrect password.")
+        return None
 
 def register_user():
+    """
+    Registers a new user by prompting for username, email, and password. Validates the input and creates a new user in the database if all checks pass.
+    """
     while True:
         username = str(input("Enter username: "))
         email = str(input("Enter email: "))
@@ -38,7 +63,8 @@ def main():
         print("Welcome to the User Management System")
         print("1. Register")
         print("2. Login")
-        print("3. Exit")
+        print("3. Account Info")
+        print("4. Exit")
         choice = input("Enter your choice: ")
         if choice == "1":
             register_user()
@@ -46,6 +72,13 @@ def main():
         elif choice == "2":
             system_user = login()
         elif choice == "3":
+            if system_user:
+                print(f"Username: {system_user.username}")
+                print(f"Email: {system_user.email}")
+            else:
+                print("Please log in first.")
+        elif choice == "4":
+            print("Exiting...")
             break
 
 if __name__ == "__main__":
