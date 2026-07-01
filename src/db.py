@@ -41,7 +41,7 @@ def create_user(user: User):
         print(f"Error creating user: {e}")
     finally:
         conn.close()
-        return success
+    return success
 
 def get_user_by_username(username):
     """
